@@ -1,4 +1,15 @@
-for filename in ./results/data*
-do
-    echo $(basename "$filename")
+#!/bin/bash
+
+# Перебираем все текстовые файлы в текущей директории
+for file in *.txt; do
+    # Проверяем, что файл существует (чтобы избежать обработки шаблона, если нет .txt файлов)
+    if [[ -f "$file" ]]; then
+        # Формируем имя нового файла: оригинальное имя + "sorted.txt"
+        sorted_file="${file%.txt}sorted.txt"
+        
+        # Сортируем строки исходного файла и записываем в новый файл
+        sort "$file" > "$sorted_file"
+        
+        echo "Создан файл: $sorted_file"
+    fi
 done
