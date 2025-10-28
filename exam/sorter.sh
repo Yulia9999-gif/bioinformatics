@@ -1,4 +1,13 @@
-for filename in ./results/data*
+#!/bin/bash
+# Проходим по всем текстовым файлам в текущей папке
+for file in *.txt
 do
-    echo $(basename "$filename")
+    # Создаём имя нового файла, добавив окончание ".sorted.txt"
+    newfile="${file%.txt}.sorted.txt"
+
+    # Сортируем строки и записываем результат в новый файл
+    sort "$file" > "$newfile"
+
+    # (необязательно) Выводим сообщение о создании файла
+    echo "Создан файл: $newfile"
 done
